@@ -1,0 +1,2 @@
+
+soundingData = parseIgra('testData.txt');
