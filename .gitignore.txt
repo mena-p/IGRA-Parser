@@ -1,3 +1,0 @@
-.asv
-.png
-GMM00010868-data.txt
