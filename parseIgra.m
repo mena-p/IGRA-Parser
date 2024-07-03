@@ -1,5 +1,5 @@
 function soundingData = parseIgra(filename)
-%This function parses a IGRA atmospheric sounding file.
+%This function parses an IGRA atmospheric sounding file.
 %   Detailed explanation goes here
 
 file = fopen(filename, 'rt');
@@ -14,7 +14,6 @@ if headerLine(1) ~= '#'
     error('Invalid header record in file: %s', filename);
 end
 
-opts = detectImportOptions(filename)
 
 % Parse header record
 header = readtable(filename, opts);
