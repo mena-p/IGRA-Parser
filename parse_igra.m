@@ -1,4 +1,5 @@
 function soundings = parse_igra(filename)
+% Usage: exampleOutput = parse_igra('GMM00010868-data.txt');
 % This function parses an IGRA atmospheric sounding file containing
 % multiple soundings and returns an array of atmospheric sounding
 % objects. Each object contains information about the sounding, such
