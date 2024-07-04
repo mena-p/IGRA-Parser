@@ -51,5 +51,5 @@ fclose(fileID);
 % Variable names are according to the IGRA v2.2 specification
 data = table(dataArray{1:end-1}, 'VariableNames', {'LVLTYP1','LVLTYP2','ETIME','PRESS','PFLAG','GPH','ZFLAG','TEMP','TFLAG','RH','DPDP','WDIR','WSPD'});
 %% Replace missing values with NaN
-data = standardizeMissing(data,-9999);
+data = standardizeMissing(data,{-9999,-8888});
 
