@@ -1,5 +1,6 @@
 
 clear
 
-soundingData2 = igra_to_table('GMM00010868-data.txt',76,151);
+exampleHeader = parse_igra('GMM00010868-data.txt');
+
 

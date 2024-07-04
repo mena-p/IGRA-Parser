@@ -1,4 +1,4 @@
-function GMM00010868data = igra_to_table(filename, startRow, endRow)
+function data = igra_to_table(filename, startRow, endRow)
 %IMPORTFILE1 Import numeric data from a text file as a matrix.
 %   GMM00010868DATA = IMPORTFILE1(FILENAME)
 %   Reads data from text file FILENAME for the default selection.
@@ -57,5 +57,6 @@ fclose(fileID);
 % No unimportable data rules were applied during the import, so no post processing code is included. To generate code which works for unimportable data, select unimportable cells in a file and regenerate the script.
 
 %% Create output variable
-GMM00010868data = table(dataArray{1:end-1}, 'VariableNames', {'LVLTYP1','LVLTYP2','ETIME','PRESS','PFLAG','GPH','ZFLAG','TEMP','TFLAG','RH','DPDP','WDIR','WSPD'});
+data = table(dataArray{1:end-1}, 'VariableNames', {'LVLTYP1','LVLTYP2','ETIME','PRESS','PFLAG','GPH','ZFLAG','TEMP','TFLAG','RH','DPDP','WDIR','WSPD'});
+data = standardizeMissing(data,-9999);
 
