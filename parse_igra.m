@@ -105,9 +105,6 @@ while ischar(headerLine)
 
         data = igra_to_table(filename, lineCounter+1,...
             lineCounter+sounding.numLevels);
-        
-        %data = standardizeMissing(data,-9999);
-
         sounding.data = data;
 
         % Append this sounding object to the output array.
