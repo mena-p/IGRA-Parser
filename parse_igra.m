@@ -1,7 +1,11 @@
 function soundings = parse_igra(filename)
-% This function parses an IGRA atmospheric sounding file and returns an
-% array of atmospheric sounding objects.
-% 
+% This function parses an IGRA atmospheric sounding file containing
+% multiple soundings and returns an array of atmospheric sounding
+% objects. Each object contains information about the sounding, such
+% as date, time, location, etc. and the measured data itself. Missing
+% flags in the measument data or headers are filled with '<undefined>'
+% and missing numerical values in the data are filled with NaN.
+% Find more about the dataset on https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive
 
 % Open the provided file
 file = fopen(filename, 'rt');
@@ -9,6 +13,7 @@ if file == -1
     error('Cannot open file: %s', filename);
 end
 
+% Initialize output array
 soundings = [];
 
 % Read first line
@@ -17,7 +22,7 @@ lineCounter = 1;
 
 % Search for headers (check if line starts with '#')
 while ischar(headerLine)  
-    if headerLine(1) == '#'
+    if headerLine(1) == '#' % header found
         
         % Create a new sounding object
         sounding = struct('stationID','<undefined>',...
@@ -35,7 +40,7 @@ while ischar(headerLine)
         % atributes are always available, some are not and need special
         % treatment.
 
-        % These attributes are never missing and can be taken directly:
+        % These attributes are always available and can be taken directly:
 
         % station ID
         sounding.stationID = headerLine(2:12);
@@ -53,7 +58,7 @@ while ischar(headerLine)
         sounding.lon = str2double(headerLine(64:71))/10000;
 
         % These attributes might be missing in the header and need 
-        % special treatment.
+        % special treatment:
 
         % pressure source
         % might be missing if a non-pressure source is used
@@ -99,9 +104,10 @@ while ischar(headerLine)
 
         % Get actual sounding data. 
         % The next numLevel rows contain the actual data. The data is
-        % stored into a table, and the table is stored as an attribute
-        % of the souding object. The data might contain missing numerical 
-        % values, noted by -9999. These are found and replaced by NaN.
+        % stored into a table, and the table is stored as the attribute
+        % 'data' of the souding object. The data might contain missing 
+        % numerical values, denoted by -9999. These are found and 
+        % replaced by NaN.
 
         data = igra_to_table(filename, lineCounter+1,...
             lineCounter+sounding.numLevels);
