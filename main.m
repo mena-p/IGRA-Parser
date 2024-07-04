@@ -1,6 +1,8 @@
 
 clear
+clc
 
-exampleHeader = parse_igra('GMM00010868-data.txt');
+% Usage:
+exampleOutput = parse_igra('GMM00010868-data.txt');
 
 
