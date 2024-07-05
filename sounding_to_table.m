@@ -1,5 +1,5 @@
-function data = igra_to_table(filename, startRow, endRow)
-% Usage: data = igra_to_table('GMM00010868-data.txt',3,78);
+function data = sounding_to_table(filename, startRow, endRow)
+% Usage: data = sounding_to_table('GMM00010868-data.txt',3,78);
 % This function extracts the atmospheric sounding measurements in rows
 % startRow to endRow of the file 'filename'. WARNING: this function should
 % not be used to attempt to parse header lines. It can only parse lines
