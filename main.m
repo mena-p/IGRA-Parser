@@ -2,6 +2,6 @@
 clear
 
 % Usage:
-exampleOutput = parse_igra('GMM00010868-data.txt');
+exampleOutput = parse_derived('GMM00010868-drvd.txt');
 
 
