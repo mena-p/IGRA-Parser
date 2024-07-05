@@ -7,5 +7,5 @@ The data are extracted into an array of sounding objects, each containing all th
 Simply call the appropriate function on the file you wish to parse:
 ```
 exampleSounding = parse_sounding('GMM00010868-data.txt');
-exampleDerived = parse_derived('GMM00010868-drvd.txt')
+exampleDerived = parse_derived('GMM00010868-drvd.txt');
 ```
