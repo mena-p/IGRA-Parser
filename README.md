@@ -6,6 +6,18 @@ The data are extracted into an array of sounding objects, each containing all th
 # Usage
 Simply call the appropriate function on the file you wish to parse:
 ```
-exampleSounding = parse_sounding('GMM00010868-data.txt');
-exampleDerived = parse_derived('GMM00010868-drvd.txt');
+% Parse derived parameter file
+parsed_soundings = parse_derived('test_data.txt');
+
+% Filter soundings based on the presence of the mixed layer height parameter
+filtered_soundings = filter_soundings(parsed_soundings);
+
+% Extract and return only the relevant data in a sounding
+reduced_sounding = extract_sounding_data(filtered_soundings(1));
+
+% Plot pressure, temperature, potential temperature and virtual 
+% temperature profiles over geopotential height. The geoportential 
+% height is used as the vertical coordinate.
+plot_sounding(reduced_sounding, 1.3);
+
 ```
