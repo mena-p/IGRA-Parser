@@ -4,7 +4,7 @@ function soundings = parse_sounding(filename)
 % multiple soundings and returns an array of atmospheric sounding
 % objects. Each object contains information about the sounding, such
 % as date, time, location, etc. and the measured data itself. Missing
-% flags in the measument data or headers are filled with '<undefined>'
+% flags in the measument data or headers are filled with NaN
 % and missing numerical values in the data are filled with NaN.
 % Find more about the dataset on https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive
 
@@ -26,16 +26,16 @@ while ischar(headerLine)
     if headerLine(1) == '#' % header found
         
         % Create a new sounding object
-        sounding = struct('stationID','<undefined>',...
-            'date','<undefined>',...
-            'time','<undefined>',...
-            'releaseTime','<undefined>',...
-            'numLevels','<undefined>',...
-            'pressureSource','<undefined>', ...
-            'nonpressureSource','<undefined>',...
-            'lat', '<undefined>',...
-            'lon', '<undefined>',...
-            'data','<undefined>');
+        sounding = struct('stationID',NaN,...
+            'date',NaN,...
+            'time',NaN,...
+            'releaseTime',NaN,...
+            'numLevels',NaN,...
+            'pressureSource',NaN, ...
+            'nonpressureSource',NaN,...
+            'lat', NaN,...
+            'lon', NaN,...
+            'data',NaN);
 
         % Parse header information into sounding attributes. Some 
         % atributes are always available, some are not and need special
@@ -65,7 +65,7 @@ while ischar(headerLine)
         % might be missing if a non-pressure source is used
         pressureSource = headerLine(38:45);
         if pressureSource == "        "
-            sounding.pressureSource = '<undefined>';
+            sounding.pressureSource = NaN;
         else
             sounding.pressureSource = headerLine(38:45);
         end
@@ -74,7 +74,7 @@ while ischar(headerLine)
         % might be missing if a pressure source is used
         nonpressureSource = headerLine(47:54);
         if nonpressureSource == "        "
-            sounding.nonpressureSource = '<undefined>';
+            sounding.nonpressureSource = NaN;
         else
             sounding.pressureSource = headerLine(47:54);
         end
@@ -83,7 +83,7 @@ while ischar(headerLine)
         % might be missing completely (value equal to 99)
         time = headerLine(25:26);
         if strcmp(time, '99')
-            sounding.time = '<undefined>';
+            sounding.time = NaN;
         else
             sounding.time = datetime(time,'InputFormat','HH',...
                 'Format','HH:mm','TimeZone','UTC');
@@ -94,7 +94,7 @@ while ischar(headerLine)
         % (9999)
         releaseTime = headerLine(28:31);
         if strcmp(releaseTime, '9999')
-            sounding.releaseTime = '<undefined>'; % set undefined
+            sounding.releaseTime = NaN; % set undefined
         elseif strcmp(releaseTime(3:4), '99') % ignore minutes, take hour
             sounding.releaseTime = datetime(releaseTime(1:2),...
                 'InputFormat','HH','Format','HH:mm','TimeZone','UTC');
