@@ -1,5 +1,5 @@
 function filtered_soundings = filter_soundings(soundings)
-    % Filter soundings based on the presence of the inversion height parameter.
+    % Filter soundings based on the presence of the mixed layer height parameter.
     % This function takes an array of atmospheric sounding objects and returns
     % a filtered array containing only the soundings for which the inversion
     % height parameter is defined.
