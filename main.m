@@ -16,5 +16,5 @@ reduced_sounding = extract_sounding_data(filtered_soundings(1));
 % Plot pressure, temperature, potential temperature and virtual 
 % temperature profiles over geopotential height. The geoportential 
 % height is used as the vertical coordinate.
-plot_sounding(reduced_sounding);
+plot_sounding(reduced_sounding, 1.3);
 
