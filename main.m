@@ -7,7 +7,7 @@ close
 % Parse derived parameter file
 parsed_soundings = parse_derived('test_data.txt');
 
-% Filter soundings based on the presence of the inversion height parameter
+% Filter soundings based on the presence of the mixed layer height parameter
 filtered_soundings = filter_soundings(parsed_soundings);
 
 % Extract and return only the relevant data in a sounding
