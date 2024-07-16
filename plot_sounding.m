@@ -29,8 +29,14 @@ function plot_sounding(reduced_sounding, max_height_multiplier)
 if nargin < 2
     max_height_multiplier = 1.2;
 end
+
+% Check if max_height_multiplier is a valid value
+if max_height_multiplier <= 0
+    error('Invalid max_height_multiplier value. Please provide a positive value.')
+end
+
 % Calculate the inversion layer height
-mixed_layer_height = reduced_sounding.mixedLayerHeight./1000;
+mixed_layer_height = reduced_sounding.mixedLayerHeight/1000;
 
 figure
 
@@ -41,7 +47,8 @@ plot(reduced_sounding.derived.PRESS./100, ...
 xlabel('Pressure (Pa)')
 ylabel('Geopotential Height (km)')
 yline(mixed_layer_height, 'k--', 'DisplayName', 'zi')   
-legend('Pressure', 'Mixed Layer Height')
+yline(reduced_sounding.LCLheight./1000, 'b--', 'DisplayName', 'LCL')
+legend('Pressure', 'Mixed Layer Height', 'LCL')
 ylim([0, max_height_multiplier*mixed_layer_height])
 
 
@@ -56,7 +63,8 @@ plot(reduced_sounding.derived.VTEMP./10, ...
 xlabel('Temperature (K)')
 ylabel('Geopotential Height (km)')
 yline(mixed_layer_height, 'k--', 'DisplayName', 'zi')
-legend('Temperature', 'Virtual Temperature', 'Mixed Layer Height')
+yline(reduced_sounding.LCLheight./1000, 'b--', 'DisplayName', 'LCL')
+legend('Temperature', 'Virtual Temperature', 'Mixed Layer Height', 'LCL')
 ylim([0, max_height_multiplier*mixed_layer_height])
 
 
@@ -68,7 +76,8 @@ plot(reduced_sounding.derived.PTEMP./10,...
 xlabel('Potential Temperature (K)')
 ylabel('Geopotential Height (km)') 
 yline(mixed_layer_height, 'k--', 'DisplayName', 'zi')
-legend('Potential Temperature', 'Mixed Layer Height')
+yline(reduced_sounding.LCLheight./1000, 'b--', 'DisplayName', 'LCL')
+legend('Potential Temperature', 'Mixed Layer Height', 'LCL')
 ylim([0, max_height_multiplier*mixed_layer_height])
 
 end
