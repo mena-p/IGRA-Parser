@@ -4,7 +4,7 @@ NOAA's [Integrated Global Radiosonde Archive](https://www.ncei.noaa.gov/products
 The data are extracted into an array of sounding objects, each containing all the information in the sounding, such as station ID, date, time, location, number of measurements, measurement data, etc. The file to be parsed must be in the [sounding file format](https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-data-format.txt) or in the [parameter file format](https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-derived-format.txt) of IGRA v2 or v2.2.
 
 # Usage
-An example can be found on the script main.m
+See the script main.m for an example.
 
 To parse a sounding or derived parameter file use
 ```
