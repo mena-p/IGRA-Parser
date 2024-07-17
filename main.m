@@ -28,5 +28,3 @@ interpolated_sounding = interpolate_missing(capped_sounding);
 % temperature profiles over geopotential height, up to 1.1 times the
 % mixed layer height.
 plot_sounding(interpolated_sounding, 1.1);
-
-
