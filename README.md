@@ -4,20 +4,32 @@ NOAA's [Integrated Global Radiosonde Archive](https://www.ncei.noaa.gov/products
 The data are extracted into an array of sounding objects, each containing all the information in the sounding, such as station ID, date, time, location, number of measurements, measurement data, etc. The file to be parsed must be in the [sounding file format](https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-data-format.txt) or in the [parameter file format](https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-derived-format.txt) of IGRA v2 or v2.2.
 
 # Usage
-Simply call the appropriate function on the file you wish to parse:
+An example can be found on the script main.m
+
+To parse a sounding or derived parameter file use
 ```
+% Parse sounding file
+parsed_soundings = parse_sounding('GMM00010868-data.txt');
 % Parse derived parameter file
-parsed_soundings = parse_derived('test_data.txt');
+parsed_soundings = parse_derived('GMM00010868-drvd.txt');
+```
+This returns a vector of sounding objects.
 
-% Filter soundings based on the presence of the mixed layer height parameter
+To filter soundings based on the presence of the mixed layer height parameter use the function filter_soundings(), that returns a filtered vector of sounding objects.
+```
 filtered_soundings = filter_soundings(parsed_soundings);
+```
+If you only need measurements up to a certain height, you can cap the sounding with
+```
+capped_sounding = remove_values_above(reduced_sounding, max_height);
+```
+The max_height parameter is interpreted as a height in meters if it is greater than 50. Otherwise, it is interpreted as a factor, and the maximum height is max_height\*mixed layer height.
 
-% Extract and return only the relevant data in a sounding
-reduced_sounding = extract_sounding_data(filtered_soundings(1));
-
-% Plot pressure, temperature, potential temperature and virtual 
-% temperature profiles over geopotential height. The geoportential 
-% height is used as the vertical coordinate.
-plot_sounding(reduced_sounding, 1.3);
-
+To plot pressure, temperature, potential temperature and virtual temperature profiles over geopotential height, use the function plot_sounding(). The profiles are plotted up to the height of factor\*mixed layer height. The default value is 1.3.
+```
+plot_sounding(sounding, factor);
+```
+If you are only interested in the mixed layer height, lifting condensation level, geopotential heights, pressure, temperature, potential temperature, and virtual temperature, you can remove all other values from the sounding with
+```
+reduced_sounding = extract_sounding_data(sounding);
 ```
