@@ -22,11 +22,11 @@ reduced_sounding = extract_sounding_data(filtered_soundings(1));
 capped_sounding = remove_values_above(reduced_sounding, 1.3);
 
 % Interpolate missing values in the sounding with an interval of 1 meter
-reduced_sounding = interpolate_missing(reduced_sounding);
+interpolated_sounding = interpolate_missing(capped_sounding);
 
 % Plot pressure, temperature, potential temperature and virtual 
 % temperature profiles over geopotential height, up to 1.1 times the
 % mixed layer height.
-plot_sounding(reduced_sounding, 1.1);
+plot_sounding(interpolated_sounding, 1.1);
 
 
