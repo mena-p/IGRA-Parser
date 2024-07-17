@@ -10,6 +10,14 @@ parsed_soundings = parse_derived('test_data.txt');
 % Filter soundings based on the presence of the mixed layer height parameter
 filtered_soundings = filter_soundings(parsed_soundings);
 
+% Save the filtered_soundings variable to a MAT file compatible with Simulink
+save('filtered_soundings_simulink.mat', 'filtered_soundings', '-v7.3');
+
+clear
+
+% Load the saved variable from the MAT file in Simulink
+load('filtered_soundings_simulink.mat');
+
 % Extract and return only the relevant data in a sounding
 reduced_sounding = extract_sounding_data(filtered_soundings(1));
 
