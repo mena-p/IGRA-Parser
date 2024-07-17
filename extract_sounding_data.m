@@ -1,6 +1,11 @@
 function reduced_sounding = extract_sounding_data(sounding)
     % Extract and return only the relevant data in a sounding,
-    % and return a reduced sounding object.
+    % and return a reduced sounding object. If a row contains missing
+    % reported geopotential height values, they are filled with the
+    % corresponding calculated geopotential height values. Rows that
+    % still contain missing reported geopotential height values are
+    % removed.
+    %
     % The following parameters are extracted:
     % - mixed layer height
     % - lifting condensation level
@@ -10,9 +15,10 @@ function reduced_sounding = extract_sounding_data(sounding)
     % - temperature profile
     % - potential temperature profile
     % - virtual temperature profile
+    %
     % Input: sounding - a sounding object
     % Output: reduced_sounding - a reduced sounding containing only the 
-    % extracted values.
+    % extracted values, and no missing geopotential height values.
 
     % Initialize a reduced sounding object and copy the relevant attributes
     reduced_sounding.mixedLayerHeight = sounding.mixedLayerHeight;
