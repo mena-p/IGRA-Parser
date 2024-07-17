@@ -8,24 +8,23 @@ See the script main.m for an example.
 
 To parse a sounding or derived parameter file use
 ```
-% Parse sounding file
 parsed_soundings = parse_sounding('GMM00010868-data.txt');
-% Parse derived parameter file
+
 parsed_soundings = parse_derived('GMM00010868-drvd.txt');
 ```
 This returns a vector of sounding objects.
 
-To filter soundings based on the presence of the mixed layer height parameter use the function filter_soundings(), that returns a filtered vector of sounding objects.
+To filter soundings based on the presence of the mixed layer height parameter use the function filter_soundings(). It returns a filtered vector of sounding objects.
 ```
 filtered_soundings = filter_soundings(parsed_soundings);
 ```
-If you only need measurements up to a certain height, you can cap the sounding with
+If you only need measurements up to a certain height, you can cap the sounding with:
 ```
-capped_sounding = remove_values_above(reduced_sounding, max_height);
+capped_sounding = remove_values_above(sounding, max_height);
 ```
 The max_height parameter is interpreted as a height in meters if it is greater than 50. Otherwise, it is interpreted as a factor, and the maximum height is max_height\*mixed layer height.
 
-To plot pressure, temperature, potential temperature and virtual temperature profiles over geopotential height, use the function plot_sounding(). The profiles are plotted up to the height of factor\*mixed layer height. The default value is 1.3.
+To plot pressure, temperature, potential temperature and virtual temperature profiles over geopotential height, use the function plot_sounding(). The profiles are plotted up to the height of factor\*mixed layer height. The default factor is 1.3.
 ```
 plot_sounding(sounding, factor);
 ```
