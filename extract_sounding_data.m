@@ -7,6 +7,7 @@ function reduced_sounding = extract_sounding_data(sounding)
     % removed.
     %
     % The following parameters are extracted:
+    % - station ID
     % - mixed layer height
     % - lifting condensation level
     % The following profiles are extracted:
@@ -24,6 +25,11 @@ function reduced_sounding = extract_sounding_data(sounding)
     % extracted values, and no missing geopotential height values.
 
     % Initialize a reduced sounding object and copy the relevant attributes
+    %reduced_sounding.stationID = sounding.stationID;
+    if isfield(sounding, 'lat') && isfield(sounding, 'lon')
+        reduced_sounding.lat = sounding.lat;
+        reduced_sounding.lon = sounding.lon;
+    end
     reduced_sounding.mixedLayerHeight = sounding.mixedLayerHeight;
     reduced_sounding.LCLheight = sounding.LCLheight;
 
@@ -49,6 +55,7 @@ function reduced_sounding = extract_sounding_data(sounding)
 
     % Remove the CALCRH column
     reduced_sounding.derived.CALCRH = [];
-  
+
+    disp('Extracted and sanitized sounding data')
 
 end
