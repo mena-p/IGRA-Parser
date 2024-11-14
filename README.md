@@ -3,7 +3,7 @@ NOAA's [Integrated Global Radiosonde Archive](https://www.ncei.noaa.gov/products
 
 The data are extracted into an array of sounding objects, each containing all the information in the sounding, such as station ID, date, time, location, number of measurements, measurement data, etc. The file to be parsed must be in the [sounding file format](https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-data-format.txt) or in the [parameter file format](https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/doc/igra2-derived-format.txt) of IGRA v2 or v2.2.
 
-# Usage
+# Usage (semi-outdated)
 See the script main.m for an example.
 
 To parse a sounding or derived parameter file use
@@ -32,3 +32,6 @@ If you are only interested in the mixed layer height, lifting condensation level
 ```
 reduced_sounding = extract_sounding_data(sounding);
 ```
+# Cite this code
+If you want to cite this code, you can do so with:
+Savelli, P (2024) IGRA-Parser (Version 0.9) [Source code]. https://github.com/mena-p/IGRA-Parser
