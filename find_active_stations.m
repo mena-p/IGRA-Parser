@@ -61,7 +61,6 @@ function active_stations = find_active_stations(location, date,start_dist)
                     error('It seems like you are not running the gui from the root directory. Please change the current directory to the root directory and try again.');
                 else
                     purge_cache();
-                    gui();
                     error('Cache file not found. This can happen if the cache file was manually deleted. The cache has been purged automatically, which should solve the problem. If it does not, please manually set the lastUpdate column of the stations.mat table to 01.01.0000 and save it to the station.mat file. Restart the GUI and try again.');
                 end
             end
