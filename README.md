@@ -32,3 +32,6 @@ If you are only interested in the mixed layer height, lifting condensation level
 ```
 reduced_sounding = extract_sounding_data(sounding);
 ```
+# Cite this code
+If you want to cite this code, you can do so with:
+Savelli, P (2024) IGRA-Parser (Version 0.9) [Source code]. https://github.com/mena-p/IGRA-Parser
